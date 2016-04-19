@@ -11,7 +11,7 @@ sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux /etc/selinu
 # Enable external YUM repos
 rpm -FUvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 rpm -FUvh https://centos7.iuscommunity.org/ius-release.rpm
-rpm -FUvh http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm
+rpm -FUvh https://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm
 
 # System update
 yum -y update
