@@ -22,7 +22,7 @@ rpm -q mysql57-community-release || yum -y install https://repo.mysql.com/mysql5
 yum -y update
 
 # Useful utilities
-sudo yum -y install htop vim sysstat nc
+sudo yum -y install htop vim sysstat nc expect pwgen
 
 
 ######################
@@ -57,6 +57,7 @@ sudo systemctl restart mysqld
 
 #######################
 ## MySQL Configuration
+
 if [ -f /root/.mylogin.cnf ]; then
    echo "MySQL user config already exists"
 else
@@ -67,6 +68,7 @@ fi
 
 ##########################
 ## Wordpress installation
+
 if [ -d /var/nginx/html ]; then
    echo "Wordpress already installed"
 else
@@ -75,3 +77,10 @@ else
    mv /var/nginx/wordpress /var/nginx/html
    chown nginx: /var/nginx/html
 fi
+
+WPMYPASS=$(pwgen -1 -B 14)
+echo "CREATE DATABASE wordpress;" | mysql
+echo "GRANT ALL PRIVILEGES ON wordpress.* TO wordpress IDENTIFIED BY $WPMYPASS;" | mysql
+echo "FLUSH PRIVILEGES;" | mysql
+
+echo $WPMYPASS
