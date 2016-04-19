@@ -10,7 +10,7 @@ sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux /etc/selinu
 
 # Enable external YUM repos
 rpm -q epel-release || yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-rpm -q ius-release  ||yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+rpm -q ius-release  || yum -y install https://centos7.iuscommunity.org/ius-release.rpm
 rpm -q mysql57-community-release || yum -y install https://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm
 
 # System update
@@ -26,7 +26,7 @@ sudo yum -y install htop vim sysstat nc
 yum -y install nginx
 
 # PHP
-yum -y install php56u php56u-fpm-nginx
+yum -y install php56u-fpm-nginx php56u-mysql
 
 # MySQL
 yum -y install mysql-community-server
