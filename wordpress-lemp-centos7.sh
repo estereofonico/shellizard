@@ -5,7 +5,7 @@ set -eux
 ## Base system
 
 # Disable SELinux
-/sbin/getenforce | grep -i disabled && /sbin/setenforce 0
+/sbin/getenforce | grep -i disabled || /sbin/setenforce 0
 sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux /etc/selinux/config
 
 # Enable external YUM repos
