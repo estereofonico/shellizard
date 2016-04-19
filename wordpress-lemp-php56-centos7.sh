@@ -48,11 +48,15 @@ sudo systemctl enable  mysqld
 # Start services
 sudo systemctl restart php-fpm
 sudo systemctl restart nginx
-
+sudo systemctl restart mysqld
 
 ##########################
 ## Wordpress installation
-curl https://wordpress.org/latest.tar.gz -o /var/nginx/wp-installer.tar.gz -L
-tar -xvzf /var/nginx/wp-installer.tar.gz -C /var/nginx
-mv /var/nginx/wordpress /var/nginx/html
-chown nginx: /var/nginx/html
+if [ -d /var/nginx/html ]; then
+   echo "Wordpress already installed"
+else
+   curl https://wordpress.org/latest.tar.gz -o /var/nginx/wp-installer.tar.gz -L
+   tar -xvzf /var/nginx/wp-installer.tar.gz -C /var/nginx
+   mv /var/nginx/wordpress /var/nginx/html
+   chown nginx: /var/nginx/html
+fi
