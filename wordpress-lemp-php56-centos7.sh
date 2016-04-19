@@ -44,7 +44,7 @@ chown nginx: /var/nginx/html
 # Enable services
 sudo systemctl enable  php-fpm
 sudo systemctl enable  nginx
-sudo systemctl enable  mysql
+sudo systemctl enable  mysqld
 
 # Start services
 sudo systemctl restart php-fpm
