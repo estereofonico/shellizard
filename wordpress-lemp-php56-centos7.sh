@@ -38,8 +38,7 @@ yum -y install mysql-community-server
 
 # Change NGINX root
 sed -i 's/\/usr\/share\/nginx\/html/\/var\/nginx\/html/g' /etc/nginx/nginx.conf
-mkdir -p /var/nginx/html
-chown nginx: /var/nginx/html
+mkdir -p /var/nginx
 
 # Enable services
 sudo systemctl enable  php-fpm
@@ -51,4 +50,9 @@ sudo systemctl restart php-fpm
 sudo systemctl restart nginx
 
 
-
+##########################
+## Wordpress installation
+curl https://wordpress.org/latest.tar.gz -o /var/nginx/wp-installer.tar.gz -L
+tar -xvzf /var/nginx/wp-installer.tar.gz -C /var/nginx
+mv /var/nginx/wordpress /var/nginx/html
+chown nginx: /var/nginx/html
