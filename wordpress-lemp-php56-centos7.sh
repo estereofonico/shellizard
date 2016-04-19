@@ -1,6 +1,11 @@
 #!/bin/bash
 set -eux
 
+####################
+## External scripts
+
+MYSQLHELPER='https://raw.githubusercontent.com/saisyukusanagi/shellizard/master/mysql57-root-password.expect'
+
 ################
 ## Base system
 
@@ -55,9 +60,8 @@ sudo systemctl restart mysqld
 if [ -f /root/.mylogin.cnf ]; then
    echo "MySQL user config already exists"
 else
-   echo "[client]" > /root/.mylogin.cnf
-   echo "user = root" >> /root/.mylogin.cnf
-   echo "password = $(grep -i 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')" >> /root/.mylogin.cnf
+   curl $MYSQLHELPER -o /var/lib/mysql/.root-password.expect -L
+   expect /var/lib/mysql/.root-password.expect $(grep -i 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 fi
 
 ##########################
