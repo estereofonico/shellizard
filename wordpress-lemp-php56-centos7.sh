@@ -50,6 +50,16 @@ sudo systemctl restart php-fpm
 sudo systemctl restart nginx
 sudo systemctl restart mysqld
 
+#######################
+## MySQL Configuration
+if [ -f /root/.mylogin.cnf ]; then
+   echo "MySQL user config already exists"
+else
+   echo "[client]" > /root/.mylogin.cnf
+   echo "user = root" >> /root/.mylogin.cnf
+   echo "password = $(grep -i 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')" >> /root/.mylogin.cnf
+fi
+
 ##########################
 ## Wordpress installation
 if [ -d /var/nginx/html ]; then
