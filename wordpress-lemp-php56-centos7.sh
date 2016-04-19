@@ -29,4 +29,4 @@ yum -y install nginx
 yum -y install php56u php56u-fpm-nginx
 
 # MySQL
-yum -y install mysql-comunity-server
+yum -y install mysql-community-server
