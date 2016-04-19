@@ -19,6 +19,7 @@ yum -y update
 # Useful utilities
 sudo yum -y install htop vim sysstat nc
 
+
 ######################
 ## Install LEMP stack
 
@@ -30,3 +31,24 @@ yum -y install php56u-fpm-nginx php56u-mysql
 
 # MySQL
 yum -y install mysql-community-server
+
+
+##########################
+## Services configuration
+
+# Change NGINX root
+sed -i 's/\/usr\/share\/nginx\/html/\/var\/nginx\/html/g' /etc/nginx/nginx.conf
+mkdir -p /var/nginx/html
+chown nginx: /var/nginx/html
+
+# Enable services
+sudo systemctl enable  php-fpm
+sudo systemctl enable  nginx
+sudo systemctl enable  mysql
+
+# Start services
+sudo systemctl restart php-fpm
+sudo systemctl restart nginx
+
+
+
