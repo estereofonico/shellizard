@@ -5,9 +5,8 @@ set -eux
 ## Base system
 
 # Disable SELinux
-setenforce 0
-sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux
-sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/selinux/config
+/sbin/getenforce | grep -i disabled && /sbin/setenforce 0
+sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux /etc/selinux/config
 
 # Enable external YUM repos
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
