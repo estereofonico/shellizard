@@ -78,8 +78,7 @@ else
    chown nginx: /var/nginx/html
 fi
 
-echo "SHOW DATABASES;" | mysql | grep wordpress
-if [ $? -eq 0 ]; then
+if [ -d /var/lib/mysql/wordpress ]; then
    echo "Database already exists"
 else
    WPMYPASS=$(pwgen -1 -ycnB 14)
