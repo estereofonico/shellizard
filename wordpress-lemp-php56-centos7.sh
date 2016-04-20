@@ -89,9 +89,9 @@ fi
 #if [ -d /var/lib/mysql/wordpress ]; then
 #   echo "Database already exists"
 #else
-   WPMYPASS=$(pwgen -1 -B 14)
+   WPMYPASS=$(pwgen -1 -yncB 14)
 #   echo "CREATE DATABASE wordpress;" | mysql
-   echo "GRANT ALL PRIVILEGES ON wordpress.* TO wordpress IDENTIFIED BY $WPMYPASS;" | mysql
+   echo "GRANT ALL PRIVILEGES ON wordpress.* TO wordpress IDENTIFIED BY \'$WPMYPASS\';" | mysql
    echo "FLUSH PRIVILEGES;" | mysql
 #fi
 
