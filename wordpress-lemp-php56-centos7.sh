@@ -83,8 +83,17 @@ if [ -d /var/lib/mysql/wordpress ]; then
 else
    WPMYPASS=$(pwgen -1 -B 14)
    echo "CREATE DATABASE wordpress;" | mysql
+fi
+
+
+#if [ -d /var/lib/mysql/wordpress ]; then
+#   echo "Database already exists"
+#else
+   WPMYPASS=$(pwgen -1 -B 14)
+   echo "CREATE DATABASE wordpress;" | mysql
    echo "GRANT ALL PRIVILEGES ON wordpress.* TO wordpress IDENTIFIED BY $WPMYPASS;" | mysql
    echo "FLUSH PRIVILEGES;" | mysql
-fi
+#fi
+
 echo "Your Wordpress MySQL user is: wordpress"
 echo "Your Wordpress MySQL password is: $WPMYPASS"
