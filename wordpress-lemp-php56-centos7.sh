@@ -78,9 +78,14 @@ else
    chown nginx: /var/nginx/html
 fi
 
-WPMYPASS=$(pwgen -1 -B 14)
-echo "CREATE DATABASE wordpress;" | mysql
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO wordpress IDENTIFIED BY $WPMYPASS;" | mysql
-echo "FLUSH PRIVILEGES;" | mysql
-
-echo $WPMYPASS
+echo "SHOW DATABASES;" | mysql | grep wordpress
+if [ $? -eq 0 ]; then
+   echo "Database already exists"
+else
+   WPMYPASS=$(pwgen -1 -ycnB 14)
+   echo "CREATE DATABASE wordpress;" | mysql
+   echo "GRANT ALL PRIVILEGES ON wordpress.* TO wordpress IDENTIFIED BY $WPMYPASS;" | mysql
+   echo "FLUSH PRIVILEGES;" | mysql
+fi
+echo "Your Wordpress MySQL user is: wordpress"
+echo "Your Wordpress MySQL password is: $WPMYPASS"
