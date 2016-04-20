@@ -75,7 +75,7 @@ else
    curl https://wordpress.org/latest.tar.gz -o /var/nginx/wp-installer.tar.gz -L
    tar -xvzf /var/nginx/wp-installer.tar.gz -C /var/nginx
    mv /var/nginx/wordpress /var/nginx/html
-   chown nginx: /var/nginx/html
+   chown php-fpm: /var/nginx/html
 fi
 
 if [ -d /var/lib/mysql/wordpress ]; then
