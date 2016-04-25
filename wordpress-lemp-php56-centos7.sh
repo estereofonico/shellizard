@@ -48,16 +48,6 @@ sudo systemctl enable  nginx
 sudo systemctl restart php-fpm
 sudo systemctl restart nginx
 
-#######################
-## MySQL Configuration
-
-if [ -f /root/.mylogin.cnf ]; then
-   echo "MySQL user config already exists"
-else
-   curl $MYSQLHELPER -o /var/lib/mysql/.root-password.expect -L
-   expect /var/lib/mysql/.root-password.expect $(grep -i 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
-   rm -f /var/lib/mysql/.root-password.expect
-fi
 
 ##########################
 ## Wordpress installation
