@@ -1,11 +1,6 @@
 #!/bin/bash
 set -eux
 
-####################
-## External scripts
-
-MYSQLHELPER='https://raw.githubusercontent.com/saisyukusanagi/shellizard/master/mysql57-root-password.expect'
-
 ################
 ## Base system
 
@@ -75,3 +70,7 @@ else
    mv /var/nginx/wordpress /var/nginx/html
    chown nginx: /var/nginx/html
 fi
+
+##################
+## End of process
+echo "Installation finished!!!"
